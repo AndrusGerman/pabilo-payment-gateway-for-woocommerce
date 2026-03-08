@@ -270,6 +270,7 @@ function pabilopg_gateway_init() {
 			$stored_amount  = $order->get_meta( '_pabilo_payment_link_amount' );
 			$current_amount = floatval( $order->get_total() );
 			$order_status   = $order->get_status();
+			/* translators: %s: order number */
 			$description    = sprintf( __( 'Orden #%s', 'pabilo-payment-gateway-for-woocommerce' ), $order->get_order_number() );
 
 			if ( ! empty( $stored_url ) && ! empty( $stored_id ) && in_array( $order_status, array( 'pending', 'on-hold' ), true ) ) {
