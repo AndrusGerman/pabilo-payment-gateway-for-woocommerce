@@ -2,7 +2,7 @@
 /**
  * WooCommerce Blocks Integration for Pabilo Gateway
  *
- * @package WC_Pabilo_Gateway
+ * @package Pabilo_PG_Gateway
  */
 
 use Automattic\WooCommerce\Blocks\Payments\Integrations\AbstractPaymentMethodType;
@@ -10,12 +10,12 @@ use Automattic\WooCommerce\Blocks\Payments\Integrations\AbstractPaymentMethodTyp
 /**
  * Pabilo payment method integration for WooCommerce Blocks
  */
-final class WC_Pabilo_Blocks_Integration extends AbstractPaymentMethodType {
+final class Pabilo_PG_Blocks_Integration extends AbstractPaymentMethodType {
 
 	/**
 	 * The gateway instance.
 	 *
-	 * @var WC_Pabilo_Gateway
+	 * @var Pabilo_PG_Gateway
 	 */
 	private $gateway;
 
@@ -63,7 +63,7 @@ final class WC_Pabilo_Blocks_Integration extends AbstractPaymentMethodType {
 			);
 
 		wp_register_script(
-			'wc-pabilo-blocks-integration',
+			'pabilopg-blocks-integration',
 			$script_url,
 			array_merge( $script_asset['dependencies'], array( 'wc-blocks-registry', 'wc-settings', 'wp-element', 'wp-i18n' ) ),
 			$script_asset['version'],
@@ -72,15 +72,15 @@ final class WC_Pabilo_Blocks_Integration extends AbstractPaymentMethodType {
 
 		// Localize script with payment method data
 		wp_localize_script(
-			'wc-pabilo-blocks-integration',
-			'wc_pabilo_params',
+			'pabilopg-blocks-integration',
+			'pabilopg_params',
 			array(
 				'title'       => $this->get_setting( 'title' ),
 				'description' => $this->get_setting( 'description' ),
 			)
 		);
 
-		return array( 'wc-pabilo-blocks-integration' );
+		return array( 'pabilopg-blocks-integration' );
 	}
 
 	/**

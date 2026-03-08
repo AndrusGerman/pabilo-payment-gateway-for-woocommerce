@@ -18,16 +18,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-add_action( 'plugins_loaded', 'wc_pabilo_gateway_init', 11 );
+add_action( 'plugins_loaded', 'pabilopg_gateway_init', 11 );
 
 
-function wc_pabilo_gateway_init() {
+function pabilopg_gateway_init() {
 
 	if ( ! class_exists( 'WC_Payment_Gateway' ) ) {
 		return;
 	}
 
-	class WC_Pabilo_Gateway extends WC_Payment_Gateway {
+	class Pabilo_PG_Gateway extends WC_Payment_Gateway {
 
 		public function __construct() {
 			$this->id                 = 'pabilo_gateway';
@@ -49,7 +49,7 @@ function wc_pabilo_gateway_init() {
 
 			// Actions
 			add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, array( $this, 'process_admin_options' ) );
-			add_action( 'woocommerce_api_wc_pabilo_gateway', array( $this, 'webhook_handler' ) );
+			add_action( 'woocommerce_api_pabilo_pg_gateway', array( $this, 'webhook_handler' ) );
 			add_action( 'woocommerce_admin_order_data_after_billing_address', array( $this, 'display_pabilo_payment_link_in_admin' ), 10, 1 );
 		}
 
@@ -149,7 +149,7 @@ function wc_pabilo_gateway_init() {
 				$me_data = json_decode( $body_me, true );
 
 				if ( isset( $me_data['user']['id'] ) ) {
-					update_option( 'wc_pabilo_admin_user_id', $me_data['user']['id'] );
+					update_option( 'pabilopg_admin_user_id', $me_data['user']['id'] );
 				}
 			}
 
@@ -301,7 +301,7 @@ function wc_pabilo_gateway_init() {
 				'is_usd'                   => get_woocommerce_currency() === 'USD',
 				'description'              => $description,
 				'notification_by_whastapp' => false,
-				'webhook_url'              => add_query_arg( 'order_id', $order_id, WC()->api_request_url( 'WC_Pabilo_Gateway' ) ),
+				'webhook_url'              => add_query_arg( 'order_id', $order_id, WC()->api_request_url( 'Pabilo_PG_Gateway' ) ),
 				'user_bank_id'             => $user_bank_id,
 				'redirect_url'             => $this->get_return_url( $order ),
 			);
@@ -465,7 +465,7 @@ function wc_pabilo_gateway_init() {
             
             // 2. Verify User ID (Security: Prevent payment link spoofing from another account)
             $link_user_id = isset( $data['data']['payment_link']['user_id'] ) ? $data['data']['payment_link']['user_id'] : '';
-            $admin_user_id = get_option( 'wc_pabilo_admin_user_id' );
+            $admin_user_id = get_option( 'pabilopg_admin_user_id' );
             
             if ( ! empty( $admin_user_id ) && (string) $link_user_id !== (string) $admin_user_id ) {
                 $logger = wc_get_logger();
@@ -595,19 +595,19 @@ function wc_pabilo_gateway_init() {
 	}
 }
 
-add_filter( 'woocommerce_payment_gateways', 'wc_pabilo_add_gateway' );
+add_filter( 'woocommerce_payment_gateways', 'pabilopg_add_gateway' );
 
-function wc_pabilo_add_gateway( $methods ) {
-	$methods[] = 'WC_Pabilo_Gateway';
+function pabilopg_add_gateway( $methods ) {
+	$methods[] = 'Pabilo_PG_Gateway';
 	return $methods;
 }
 
 /**
  * Add support for WooCommerce Blocks Checkout
  */
-add_action( 'woocommerce_blocks_loaded', 'wc_pabilo_gateway_block_support' );
+add_action( 'woocommerce_blocks_loaded', 'pabilopg_gateway_block_support' );
 
-function wc_pabilo_gateway_block_support() {
+function pabilopg_gateway_block_support() {
 	if ( ! class_exists( 'Automattic\WooCommerce\Blocks\Payments\Integrations\AbstractPaymentMethodType' ) ) {
 		return;
 	}
@@ -625,7 +625,7 @@ function wc_pabilo_gateway_block_support() {
 	add_action(
 		'woocommerce_blocks_payment_method_type_registration',
 		function( Automattic\WooCommerce\Blocks\Payments\PaymentMethodRegistry $payment_method_registry ) {
-			$payment_method_registry->register( new WC_Pabilo_Blocks_Integration() );
+			$payment_method_registry->register( new Pabilo_PG_Blocks_Integration() );
 		}
 	);
 }
