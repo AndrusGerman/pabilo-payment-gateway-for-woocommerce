@@ -33,6 +33,5 @@ Write-Host "  svn status                # Para revisar qué archivos han cambiad
 Write-Host "  svn add --force *         # Para agregar cualquier archivo nuevo"
 Write-Host "  svn commit -m `"Release 1.0.5`" --username pabilo --password <tu_contraseña>"
 Write-Host "========================================="
-Write-Host "Recuerda que también debes crear el tag para la versión 1.0.5:"
-Write-Host "  svn cp trunk tags/1.0.5"
-Write-Host "  svn commit -m `"Tagging version 1.0.5`" --username pabilo --password <tu_contraseña>"
+Write-Host "Recuerda que también debes crear el tag para la versión (ej. 1.0.5):"
+Write-Host "  svn cp https://plugins.svn.wordpress.org/pabilo-payment-gateway-for-woocommerce/trunk https://plugins.svn.wordpress.org/pabilo-payment-gateway-for-woocommerce/tags/1.0.5 -m `"Tagging version 1.0.5`" --username pabilo --password <tu_contraseña>"
