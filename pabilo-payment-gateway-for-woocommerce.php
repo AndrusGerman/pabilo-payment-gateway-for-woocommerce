@@ -614,7 +614,7 @@ function pabilopg_gateway_block_support() {
 	}
 
 	// Include the Blocks integration class
-	$blocks_file = plugin_dir_path( __FILE__ ) . 'includes/class-wc-pabilo-blocks-integration.php';
+	$blocks_file = plugin_dir_path( __FILE__ ) . 'includes/class-pabilopg-blocks-integration.php';
 	
 	if ( ! file_exists( $blocks_file ) ) {
 		return;
