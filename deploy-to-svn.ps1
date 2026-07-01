@@ -1,5 +1,5 @@
-$src = "C:\Users\andru\Local Sites\pabilo-demo\app\public\wp-content\plugins\pabilo-payment-gateway-for-woocommerce"
-$svnDir = "C:\Users\andru\Local Sites\pabilo-demo\app\public\wp-content\plugins\.svn-pabilo-repo\pabilo-payment-gateway-for-woocommerce"
+$src = "C:\Users\andru\Local Sites\pabilo-wordpress-7\app\public\wp-content\plugins\pabilo-payment-gateway-for-woocommerce"
+$svnDir = "C:\Users\andru\Local Sites\pabilo-wordpress-7\app\public\wp-content\plugins\.svn-pabilo-repo\pabilo-payment-gateway-for-woocommerce"
 
 Write-Host "========================================="
 Write-Host "Preparando archivos para el repositorio SVN"

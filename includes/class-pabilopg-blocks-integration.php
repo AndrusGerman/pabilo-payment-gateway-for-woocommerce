@@ -50,7 +50,7 @@ final class Pabilo_PG_Blocks_Integration extends AbstractPaymentMethodType {
 	 * @return array
 	 */
 	public function get_payment_method_script_handles() {
-		$script_path       = '/assets/js/pabilo-blocks.js';
+		$script_path       = 'assets/js/pabilo-blocks.js';
 		$script_asset_path = plugin_dir_path( dirname( __FILE__ ) ) . 'assets/js/pabilo-blocks.asset.php';
 		$script_url        = plugins_url( $script_path, dirname( __FILE__ ) );
 		
@@ -59,7 +59,7 @@ final class Pabilo_PG_Blocks_Integration extends AbstractPaymentMethodType {
 			? require $script_asset_path
 			: array(
 				'dependencies' => array(),
-				'version'      => filemtime( plugin_dir_path( dirname( __FILE__ ) ) . $script_path )
+				'version'      => file_exists( plugin_dir_path( dirname( __FILE__ ) ) . $script_path ) ? filemtime( plugin_dir_path( dirname( __FILE__ ) ) . $script_path ) : '1.0.0'
 			);
 
 		wp_register_script(

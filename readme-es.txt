@@ -3,7 +3,7 @@ Contributors: Pabilo
 Donate link: https://pabilo.app
 Tags: woocommerce, payment gateway, venezuela, banco de venezuela, mercantil, banesco, provincial, bolivares, pago movil, transferencia
 Requires at least: 5.0
-Tested up to: 6.9
+Tested up to: 7.0
 Stable tag: 1.0.5
 Requires PHP: 7.4
 Requires Plugins: woocommerce
