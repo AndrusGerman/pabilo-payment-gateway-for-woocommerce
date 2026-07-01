@@ -4,7 +4,7 @@ Donate link: https://pabilo.app
 Tags: woocommerce, payment gateway, venezuela, bank transfer, pago movil
 Requires at least: 5.0
 Tested up to: 7.0
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 Requires PHP: 7.4
 Requires Plugins: woocommerce
 License: GPLv2 or later
@@ -51,6 +51,10 @@ The plugin supports transfers and Pago Móvil from major Venezuelan banks, inclu
 2. Payment option at checkout.
 
 == Changelog ==
+
+= 1.0.6 =
+* Fix: Prevent fatal error in filemtime when JS build file is missing.
+* Compatibility: Tested up to WordPress 7.0.
 
 = 1.0.5 =
 * Feature: Reuse existing payment link when the customer goes back and clicks Pay again (avoids duplicate payment links).
